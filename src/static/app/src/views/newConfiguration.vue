@@ -1,12 +1,12 @@
 <script>
-import {parse} from "cidr-tools";
+import { parseCidr } from "cidr-tools";
 import '@/utilities/wireguard.js'
-import {WireguardConfigurationsStore} from "@/stores/WireguardConfigurationsStore.js";
-import {fetchGet, fetchPost} from "@/utilities/fetch.js";
+import { WireguardConfigurationsStore } from "@/stores/WireguardConfigurationsStore.js";
+import { fetchGet, fetchPost } from "@/utilities/fetch.js";
 import LocaleText from "@/components/text/localeText.vue";
-import {parseInterface, parsePeers} from "@/utilities/parseConfigurationFile.js";
-import {ref} from "vue";
-import {DashboardConfigurationStore} from "@/stores/DashboardConfigurationStore.js";
+import { parseInterface, parsePeers } from "@/utilities/parseConfigurationFile.js";
+import { ref } from "vue";
+import { DashboardConfigurationStore } from "@/stores/DashboardConfigurationStore.js";
 
 export default {
 	name: "newConfiguration",
@@ -141,7 +141,7 @@ export default {
 				if (newVal.trim().split("/").filter(x => x.length > 0).length !== 2){
 					throw Error()
 				}
-				let p = parse(newVal);
+				let p = parseCidr(newVal);
 				let i = p.end - p.start;
 				this.numberOfAvailableIPs = i.toLocaleString();
 				ele.classList.add("is-valid")
