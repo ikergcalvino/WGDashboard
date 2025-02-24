@@ -8,3 +8,4 @@ psutil
 pyotp
 requests
 tcconfig
+flask_socketio
